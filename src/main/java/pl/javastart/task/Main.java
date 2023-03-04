@@ -45,7 +45,6 @@ public class Main {
         String dateTime = scanner.nextLine();
 
         List<String> dataTimePatterns = Arrays.asList("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss", "dd-MM-yyyy HH:mm:ss", "dd.MM.yyyy HH:mm:ss");
-
         String approvedDateTime = implementTimeForNoTimeDate(dateTime);
 
         for (String pat : dataTimePatterns) {
