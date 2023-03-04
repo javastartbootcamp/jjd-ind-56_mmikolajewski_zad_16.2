@@ -10,6 +10,7 @@ import java.util.*;
 
 public class Main {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final int NUMBER_OF_DATE_CHARACTER = 10;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -61,7 +62,7 @@ public class Main {
 
     private static String implementTimeForNoTimeDate(String dateTime) {
         int length = dateTime.length();
-        if (length == 10) {
+        if (length == NUMBER_OF_DATE_CHARACTER) {
             return dateTime + " 00:00:00";
         } else {
             return dateTime;
