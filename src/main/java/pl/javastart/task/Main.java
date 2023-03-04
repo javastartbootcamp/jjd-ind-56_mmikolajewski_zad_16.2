@@ -42,25 +42,16 @@ public class Main {
     private static LocalDateTime dateTime(Scanner scanner) {
         LocalDateTime localDateTime = null;
         System.out.println("Podaj datę:");
-        String dataTime = scanner.nextLine();
+        String dateTime = scanner.nextLine();
 
         List<String> dataTimePatterns = Arrays.asList("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss", "dd-MM-yyyy HH:mm:ss", "dd.MM.yyyy HH:mm:ss");
-        List<String> onlyDataPatterns = Arrays.asList("yyyy-MM-dd HH:mm", "yyyy.MM.dd HH:mm", "dd-MM-yyyy HH:mm", "dd.MM.yyyy HH:mm");
+
+        String approvedDateTime = implementTimeForNoTimeDate(dateTime);
 
         for (String pat : dataTimePatterns) {
             try {
                 DateTimeFormatter pattern = DateTimeFormatter.ofPattern(pat);
-                TemporalAccessor temporalAccessor = pattern.parse(dataTime);
-                return localDateTime = LocalDateTime.from(temporalAccessor);
-            } catch (DateTimeParseException e) {
-                //ignore
-            }
-        }
-
-        for (String pat : onlyDataPatterns) {
-            try {
-                DateTimeFormatter pattern = DateTimeFormatter.ofPattern(pat);
-                TemporalAccessor temporalAccessor = pattern.parse(dataTime + " 00:00");
+                TemporalAccessor temporalAccessor = pattern.parse(approvedDateTime);
                 return localDateTime = LocalDateTime.from(temporalAccessor);
             } catch (DateTimeParseException e) {
                 //ignore
@@ -69,4 +60,12 @@ public class Main {
         return localDateTime;
     }
 
+    private static String implementTimeForNoTimeDate(String dateTime) {
+        int length = dateTime.length();
+        if (length == 10) {
+            return dateTime + " 00:00:00";
+        } else {
+            return dateTime;
+        }
+    }
 }
